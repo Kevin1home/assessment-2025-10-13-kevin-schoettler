@@ -99,13 +99,11 @@ public class XmlUtils {
 	 * @return
 	 */
 	public final static String toPrettyXml(final Document doc) {
-		StringWriter sw = null;
 		XMLWriter xmlWriter = null;
 
-		try {
+		try(StringWriter sw = new StringWriter()) {
 			final OutputFormat outputFormat = OutputFormat.createPrettyPrint();
 
-			sw = new StringWriter();
 			xmlWriter = new XMLWriter(sw, outputFormat);
 
 			xmlWriter.write(doc);
@@ -117,7 +115,6 @@ public class XmlUtils {
 
 		} finally {
 			close(xmlWriter);
-			IOUtils.closeQuietly(sw);
 		}
 	}
 
