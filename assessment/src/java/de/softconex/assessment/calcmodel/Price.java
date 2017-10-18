@@ -6,13 +6,13 @@ import org.dom4j.DocumentHelper;
 import org.dom4j.Element;
 
 /**
- * An immutable Price object.
+ * An immutable {@link Price} object.
  */
 public final class Price {
 	private final BigDecimal amount;
 
 	/**
-	 * Returns the amount; since a bigdecimal itself is immutable, no defensive
+	 * Returns the amount; since a {@link BigDecimal} itself is immutable, no defensive
 	 * copies will be made here.
 	 * 
 	 * @return
@@ -22,7 +22,7 @@ public final class Price {
 	}
 
 	/**
-	 * Constructs a new Price instance.
+	 * Constructs a new {@link Price} instance.
 	 * 
 	 * @param amount
 	 *            (if null, a NullPointerException will be thrown).
@@ -39,7 +39,7 @@ public final class Price {
 	}
 
 	/**
-	 * Constructs a new Price instance.
+	 * Constructs a new {@link Price} instance.
 	 * 
 	 * @param amount
 	 *            (if null, a NullPointerException will be thrown).
@@ -56,7 +56,7 @@ public final class Price {
 	}
 
 	/**
-	 * Constructs a new Price instance.
+	 * Constructs a new {@link Price} instance.
 	 * 
 	 * @param amount
 	 *            (if null, a NullPointerException will be thrown).
@@ -73,7 +73,7 @@ public final class Price {
 	}
 
 	/**
-	 * Adds the passed price object to "this" object. A new instance of Price
+	 * Adds the passed {@link Price} object to "this" object. A new instance of {@link Price}
 	 * will be returned.
 	 * 
 	 * @param price
@@ -141,7 +141,7 @@ public final class Price {
 	}
 
 	/**
-	 * Returns whether the two prices are equal allowing null values. If both
+	 * Returns whether the two {@link Price} instances are equal allowing null values. If both
 	 * prices are null, they will be considered equal.
 	 * 
 	 * @param price1

@@ -3,7 +3,8 @@ package de.softconex.assessment.calcmodel;
 import java.math.BigDecimal;
 
 /**
- * Detail for a calculation model.
+ * Detail for a {@link CalculationModel}.
+ * 
  */
 public class CalculationModelDetail {
 	private BigDecimal perCent;
@@ -58,8 +59,8 @@ public class CalculationModelDetail {
 
 	@Override
 	public String toString() {
-		return "CalculationModelDetail: " + getAbsolute() + ", " + getPerCent()
-				+ "%" + "; priceRange: " + getPriceRange();
+		return "CalculationModelDetail: " + getAbsolute() + ", " + getPerCent() + "%" + "; priceRange: "
+				+ getPriceRange();
 	}
 
 }

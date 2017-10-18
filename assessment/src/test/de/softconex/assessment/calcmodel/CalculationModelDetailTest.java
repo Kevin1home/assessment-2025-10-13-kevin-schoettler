@@ -32,8 +32,11 @@ public class CalculationModelDetailTest extends TestCase {
 		assertEquals(new Price(1), calculated);
 	}
 
-	// mainly for line coverage and to make sure toString()
-	// works without nullpointerexceptions
+	/**
+	 * mainly for line coverage and to make sure toString() works without
+	 * 
+	 * {@link NullPointerException}
+	 */
 	public void testToString() {
 		assertNotNull(new CalculationModelDetail().toString());
 	}

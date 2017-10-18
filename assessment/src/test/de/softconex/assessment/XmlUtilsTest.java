@@ -54,7 +54,7 @@ public class XmlUtilsTest extends TestCase {
 		assertTrue(XmlUtils.similarDocuments(doc1, doc1));
 		assertTrue(XmlUtils.similarDocuments(createTestDocument(), createTestDocument()));
 
-		// parse document from ressource; please note that in the test document
+		// parse document from resource; please note that in the test document
 		// white space
 		// and attribute order is different
 		final Document doc2 = XmlUtils.parseResource("/de/softconex/assessment/XmlUtilsTest.xml");
