@@ -1,6 +1,5 @@
 package de.softconex.assessment;
 
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -143,42 +142,32 @@ public class XmlUtils {
 	 *            resource name (in class path) to XSD schema document.
 	 */
 	public final static void validate(final Document doc, final String xsdFileResourceName) {
-		File xsdFile = null;
-		File xmlFile = null;
-
 		try (InputStream xsdInput = XmlUtils.class.getResourceAsStream(xsdFileResourceName)) {
 			// Copy XSD from resource to (temporary) file
-			xsdFile = File.createTempFile("XmlUtils", ".xsd");
+			try (MyTempFile xsdFile = new MyTempFile("XmlUtils", ".xsd")) {
+				try (OutputStream xsdOutput = new FileOutputStream(xsdFile.get())) {
+					IOUtils.copy(xsdInput, xsdOutput);
 
-			try (OutputStream xsdOutput = new FileOutputStream(xsdFile)) {
-				IOUtils.copy(xsdInput, xsdOutput);
+					// Create XSD Schema
+					final SchemaFactory factory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
 
-				// Create XSD Schema
-				final SchemaFactory factory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
+					final Source schemaFile = new StreamSource(xsdFile.get());
+					final Schema schema = factory.newSchema(schemaFile);
 
-				final Source schemaFile = new StreamSource(xsdFile);
-				final Schema schema = factory.newSchema(schemaFile);
+					// Validate XML
+					final Validator validator = schema.newValidator();
 
-				// Validate XML
-				final Validator validator = schema.newValidator();
+					try (MyTempFile xmlFile = new MyTempFile("XmlUtils", ".xml")) {
+						FileUtils.writeStringToFile(xmlFile.get(), doc.asXML());
 
-				xmlFile = File.createTempFile("XmlUtils", ".xml");
-				FileUtils.writeStringToFile(xmlFile, doc.asXML());
-
-				validator.validate(new StreamSource(new FileInputStream(xmlFile)));
+						validator.validate(new StreamSource(new FileInputStream(xmlFile.get())));
+					}
+				}
 			}
 		} catch (final Exception ex) {
 			LOG.error(ex.getMessage(), ex);
 			throw new RuntimeException(
 					"Cannot validate XML against XSD file [" + xsdFileResourceName + "]: " + ex.getMessage(), ex);
-		} finally {
-			if (xsdFile != null) {
-				xsdFile.delete();
-			}
-
-			if (xmlFile != null) {
-				xmlFile.delete();
-			}
 		}
 	}
 }
