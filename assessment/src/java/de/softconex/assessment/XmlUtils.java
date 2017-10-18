@@ -122,7 +122,7 @@ public class XmlUtils {
 	}
 
 	/**
-	 * Convert document to "compact" xml (if possible, only one line).
+	 * Convert document to "compact" XML (if possible, only one line).
 	 * 
 	 * @param doc
 	 * @return
