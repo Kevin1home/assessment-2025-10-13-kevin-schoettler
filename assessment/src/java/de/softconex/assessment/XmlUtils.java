@@ -23,7 +23,6 @@ import org.custommonkey.xmlunit.Diff;
 import org.dom4j.Document;
 import org.dom4j.io.OutputFormat;
 import org.dom4j.io.SAXReader;
-import org.dom4j.io.XMLWriter;
 
 /**
  * Tools for handling XML documents.
@@ -99,22 +98,17 @@ public class XmlUtils {
 	 * @return
 	 */
 	public final static String toPrettyXml(final Document doc) {
-		XMLWriter xmlWriter = null;
-
-		try(StringWriter sw = new StringWriter()) {
+		try (StringWriter sw = new StringWriter()) {
 			final OutputFormat outputFormat = OutputFormat.createPrettyPrint();
 
-			xmlWriter = new XMLWriter(sw, outputFormat);
-
-			xmlWriter.write(doc);
+			try (MyXMLWriter xmlWriter = new MyXMLWriter(sw, outputFormat)) {
+				xmlWriter.get().write(doc);
+			}
 
 			return sw.toString();
 		} catch (final IOException ex) {
 			LOG.error(ex.getMessage(), ex);
 			throw new RuntimeException("Error converting document to pretty xml: " + ex.getMessage(), ex);
-
-		} finally {
-			close(xmlWriter);
 		}
 	}
 
@@ -125,40 +119,18 @@ public class XmlUtils {
 	 * @return
 	 */
 	public final static String toCompactXml(final Document doc) {
-		XMLWriter xmlWriter = null;
-
 		try (StringWriter sw = new StringWriter()) {
 			final OutputFormat outputFormat = OutputFormat.createCompactFormat();
 
-			xmlWriter = new XMLWriter(sw, outputFormat);
-
-			xmlWriter.write(doc);
+			try (MyXMLWriter xmlWriter = new MyXMLWriter(sw, outputFormat)) {
+				xmlWriter.get().write(doc);
+			}
 
 			return sw.toString();
 		} catch (final IOException ex) {
 			LOG.error(ex.getMessage(), ex);
 			throw new RuntimeException("Error converting document to compact xml: " + ex.getMessage(), ex);
 
-		} finally {
-			close(xmlWriter);
-		}
-	}
-
-	/**
-	 * Close all passed closeables sucking up any exceptions (also checking for null
-	 * references which will of course not be closed).
-	 * 
-	 * @param closeables
-	 */
-	public final static void close(XMLWriter... writers) {
-		for (XMLWriter writer : writers) {
-			if (writer != null) {
-				try {
-					writer.close();
-				} catch (final IOException ex) {
-					LOG.error(ex.getMessage(), ex);
-				}
-			}
 		}
 	}
 
