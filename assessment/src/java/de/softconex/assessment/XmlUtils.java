@@ -32,9 +32,9 @@ public class XmlUtils {
 	private final static Log LOG = LogFactory.getLog(XmlUtils.class);
 
 	/**
-	 * Parse the contents of a given resource into a document object. The
-	 * resource will be located using XmlUtils' class loader (see
-	 * {@link XmlUtils#getClass()} and
+	 * Parse the contents of a given resource into a document object. The resource
+	 * will be located using XmlUtils' class loader (see {@link XmlUtils#getClass()}
+	 * and
 	 * 
 	 * @link {@link Class#getResourceAsStream(String)}).
 	 * 
@@ -128,13 +128,11 @@ public class XmlUtils {
 	 * @return
 	 */
 	public final static String toCompactXml(final Document doc) {
-		StringWriter sw = null;
 		XMLWriter xmlWriter = null;
 
-		try {
+		try (StringWriter sw = new StringWriter()) {
 			final OutputFormat outputFormat = OutputFormat.createCompactFormat();
 
-			sw = new StringWriter();
 			xmlWriter = new XMLWriter(sw, outputFormat);
 
 			xmlWriter.write(doc);
@@ -146,13 +144,12 @@ public class XmlUtils {
 
 		} finally {
 			close(xmlWriter);
-			IOUtils.closeQuietly(sw);
 		}
 	}
 
 	/**
-	 * Close all passed closeables sucking up any exceptions (also checking for
-	 * null references which will of course not be closed).
+	 * Close all passed closeables sucking up any exceptions (also checking for null
+	 * references which will of course not be closed).
 	 * 
 	 * @param closeables
 	 */
@@ -174,36 +171,33 @@ public class XmlUtils {
 	 * @param doc
 	 *            XML document to be validated
 	 * @param xsdFileResourceName
-	 *            resource name (in classpath) to XSD schema document.
+	 *            resource name (in class path) to XSD schema document.
 	 */
 	public final static void validate(final Document doc, final String xsdFileResourceName) {
 		File xsdFile = null;
 		File xmlFile = null;
-		InputStream xsdInput = null;
-		OutputStream xsdOutput = null;
 
-		try {
-			// Copy XSD from ressource to (temporary) file
-			xsdInput = XmlUtils.class.getResourceAsStream(xsdFileResourceName);
-
+		try (InputStream xsdInput = XmlUtils.class.getResourceAsStream(xsdFileResourceName)) {
+			// Copy XSD from resource to (temporary) file
 			xsdFile = File.createTempFile("XmlUtils", ".xsd");
-			xsdOutput = new FileOutputStream(xsdFile);
 
-			IOUtils.copy(xsdInput, xsdOutput);
+			try (OutputStream xsdOutput = new FileOutputStream(xsdFile)) {
+				IOUtils.copy(xsdInput, xsdOutput);
 
-			// Create XSD Schema
-			final SchemaFactory factory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
+				// Create XSD Schema
+				final SchemaFactory factory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
 
-			final Source schemaFile = new StreamSource(xsdFile);
-			final Schema schema = factory.newSchema(schemaFile);
+				final Source schemaFile = new StreamSource(xsdFile);
+				final Schema schema = factory.newSchema(schemaFile);
 
-			// Validate XML
-			final Validator validator = schema.newValidator();
+				// Validate XML
+				final Validator validator = schema.newValidator();
 
-			xmlFile = File.createTempFile("XmlUtils", ".xml");
-			FileUtils.writeStringToFile(xmlFile, doc.asXML());
+				xmlFile = File.createTempFile("XmlUtils", ".xml");
+				FileUtils.writeStringToFile(xmlFile, doc.asXML());
 
-			validator.validate(new StreamSource(new FileInputStream(xmlFile)));
+				validator.validate(new StreamSource(new FileInputStream(xmlFile)));
+			}
 		} catch (final Exception ex) {
 			LOG.error(ex.getMessage(), ex);
 			throw new RuntimeException(
@@ -216,9 +210,6 @@ public class XmlUtils {
 			if (xmlFile != null) {
 				xmlFile.delete();
 			}
-
-			IOUtils.closeQuietly(xsdInput);
-			IOUtils.closeQuietly(xsdOutput);
 		}
 	}
 }
