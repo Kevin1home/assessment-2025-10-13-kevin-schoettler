@@ -158,7 +158,7 @@ public class XmlUtils {
 					final Validator validator = schema.newValidator();
 
 					try (MyTempFile xmlFile = new MyTempFile("XmlUtils", ".xml")) {
-						FileUtils.writeStringToFile(xmlFile.get(), doc.asXML());
+						FileUtils.writeStringToFile(xmlFile.get(), doc.asXML() ,"UTF-8");
 
 						validator.validate(new StreamSource(new FileInputStream(xmlFile.get())));
 					}
