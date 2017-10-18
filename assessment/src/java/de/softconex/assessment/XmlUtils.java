@@ -32,7 +32,7 @@ public class XmlUtils {
 	private final static Log LOG = LogFactory.getLog(XmlUtils.class);
 
 	/**
-	 * Parse the contents of a given ressource into a document object. The
+	 * Parse the contents of a given resource into a document object. The
 	 * resource will be located using XmlUtils' class loader (see
 	 * {@link XmlUtils#getClass()} and
 	 * 
@@ -93,7 +93,7 @@ public class XmlUtils {
 	}
 
 	/**
-	 * Convert document to "pretty" xml (one node per line etc.).
+	 * Convert document to "pretty" XML (one node per line etc.).
 	 * 
 	 * @param doc
 	 * @return
