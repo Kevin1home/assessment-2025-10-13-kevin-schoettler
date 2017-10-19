@@ -7,6 +7,8 @@ import org.dom4j.Element;
 
 /**
  * An immutable {@link Price} object.
+ * 
+ * For simplicity reasons, the price class does not have a currency.
  */
 public final class Price {
 	private final BigDecimal amount;
