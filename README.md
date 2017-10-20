@@ -1,8 +1,4 @@
-README for the assessment project. For nicer formatting you can copy this into bitbucket wiki, e.g.
-
-https://bitbucket.org/holger-haag-travon/assessment-.../wiki/Home
-
-
+README for the assessment project. If you open this file in bitbucket source view, the wiki formatting will be applied.
 
 
 # Introduction #
