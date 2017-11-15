@@ -1,4 +1,4 @@
-README for the assessment project. If you open this file in bitbucket source view, the Markdown formatting will be applied.
+README for the assessment project. If you look at this file in BitBucket/Eclipse/IDEA, the Markdown formatting will be applied.
 
 # Introduction #
 
@@ -14,7 +14,7 @@ It is virtually impossible to know everything first place.
 
 **Do not hesitate to ask any questions**. 
 
-At SoftConEx we cultivate an open style of discussing problems and questions. Do not waste time and other ressources when you've come to a dead end at your current task (be it assessment or "real" development) just because you don't want to ask too many questions.
+At SoftConEx we cultivate an open style of discussing problems and questions. Do not waste time and other resources when you've come to a dead end at your current task (be it assessment or "real" development) just because you don't want to ask too many questions.
 
 # Requirements/Installation #
 
