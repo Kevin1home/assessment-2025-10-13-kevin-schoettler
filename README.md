@@ -53,7 +53,7 @@ List<Price> list = new ArrayList<Price>();
 but rather create a class extending ArrayList, like PriceList in the assessment project.
 
 This allows to add methods to the SomeObjectList class which will be
-readily available througout the code without any other changes.
+readily available throughout the code without any other changes.
 
 ## Logging ##
 
