@@ -129,10 +129,19 @@ The classes will have methods to convert objects to XML and to parse XML structu
 ## Tasks ##
 
 * Implement the toXml() and parse() methods in CalculationModelDetail, CalculationModelDetailList and CalculationModel
-* Implement the equals() method in CalculationModelDetail and add the necessary test methods to CalculationModelDetailTest. A sample implementation of a nontrivial equals() method can be found in the PriceRange class.
-* Implement a new method sortByMinimumAscending() in CalculationModelDetailList. The sort logic will be similar to the sorting done in PriceList (already implemented) with one exception - a detail with no priceRange (getPriceRange() == null) should always be the last element of a sorted list.
-* Implement CalculationModelDetail#calculate completely (the TODOs are described inside the method body itself) and add the necessary test methods.
-* Implement CalculationModel class completely, most importantly the #calculate method. Create JUnit Testcase with necessary test methods
+
+* Implement the equals() method in CalculationModelDetail
+  * Add the necessary test methods to CalculationModelDetailTest. 
+  * A sample implementation of a nontrivial equals() method can be found in the PriceRange class.
+  
+* Implement a new method sortByMinimumAscending() in CalculationModelDetailList. 
+  * The sort logic will be similar to the sorting done in PriceList (already implemented) with one exception - a detail without priceRange (getPriceRange() == null) should always be the last element of a sorted list.
+  
+* Implement CalculationModelDetail#calculate completely
+  * The TODOs are described inside the method body itself) and add the necessary test methods.
+  
+* Implement CalculationModel class completely, most importantly the #calculate method. 
+  * Create JUnit Testcase with necessary test methods
 
 ## Note on firstPerCent ##
 
