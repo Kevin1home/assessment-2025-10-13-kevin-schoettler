@@ -115,8 +115,6 @@ In order to keep things simple, the Price class in the assessment project does n
 
 ## Classes ##
 
-Note: there is also a class diagram in the git repository (doc/task-calculationmodel.png)
-
 * *Price*: A simple price object (without currency)
 * *PriceList*: A list of price objects
 * *PriceRange*: A price range (price from/to)
