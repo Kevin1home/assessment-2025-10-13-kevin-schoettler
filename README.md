@@ -4,7 +4,8 @@ README for the assessment project. If you look at this file in BitBucket/Eclipse
 
 This page describes the SoftConEx assessment project. 
 
-The assessment project is used to ensure consistency in the recruiting process and to aid both sides - the future employee and SoftConEx - assessing each other. The assessment is not a one-way street, it is supposed to help both sides in understanding whether the applicants' requirements match SoftConExs' requirements and vice versa.
+The assessment project is used to ensure consistency in the recruiting process and to aid both sides - the future employee and SoftConEx - to get to know each other. 
+The assessment is not a one-way street, it is supposed to help both sides in understanding whether the applicants' requirements match SoftConExs' requirements and vice versa.
 
 ## Important note ##
 
@@ -18,12 +19,10 @@ At SoftConEx we cultivate an open style of discussing problems and questions. Do
 
 # Requirements/Installation #
 
-* Java 8 or higher
-* Maven
-* Eclipse Oxygen (4.7) or higher
 * Git
-* The cloned repository (TODO !?)
-* The project has been imported once in Eclipse (TODO !?)
+* Java 8 or higher
+* Maven 3.3.9 or higher
+* Eclipse Oxygen (4.7) or higher; IntelliJ IDEA 2017.2.5 is fine as well
 * JUnit Tests should run without error
 * Maven should produce a .jar file without errors (this includes that all tests run successfully)
 
@@ -57,7 +56,7 @@ readily available throughout the code without any other changes.
 
 ## Logging ##
 
-Although the "regular" SoftConEx projects use a different approach to logging, the assessment project uses the Commons Logging API. 
+The assessment project uses the Commons Logging API. 
 
 The basic usage is really very simple. First instantiate a LOG object. This is done typically as a static final variable which can be used throughout the class:
 
@@ -91,7 +90,6 @@ LOG.error(ex.getMessage(), ex);
   * This is not 100% correct, there are exceptions like NumberFormatException which are rather user input errors than real exceptions
 
 Reason is that silently ignoring exceptions can make things very difficult to debug in production.
-
 
 ## toXML() / parse ##
 
@@ -147,4 +145,12 @@ This defines whether percentage is applied first or absolute markup, e.g.
 
 * *firstPerCent=true*: ( 100 + 10% ) + 10 = 120
 * *firstPerCent=false*: ( 100 + 10 ) + 10% = 121
+
+# Final note
+
+Note that this is an assessment project, so there might be - like in real life projects - mistakes.
+Feel free to ask or to correct these, or handle it in any way you find appropriate.
+
+When you have completed the tasks, you have possibly discovered things which could be improved.
+Feel free to implement improvements.
 
