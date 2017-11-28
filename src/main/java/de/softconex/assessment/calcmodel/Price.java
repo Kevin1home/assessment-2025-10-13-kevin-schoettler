@@ -14,8 +14,8 @@ public final class Price {
 	private final BigDecimal amount;
 
 	/**
-	 * Returns the amount; since a {@link BigDecimal} itself is immutable, no defensive
-	 * copies will be made here.
+	 * Returns the amount; since a {@link BigDecimal} itself is immutable, no
+	 * defensive copies will be made here.
 	 * 
 	 * @return
 	 */
@@ -33,8 +33,7 @@ public final class Price {
 		super();
 
 		if (amount == null) {
-			throw new NullPointerException(
-					"Tried to construct a new Price objects with amount==null");
+			throw new NullPointerException("Tried to construct a new Price objects with amount==null");
 		}
 
 		this.amount = amount;
@@ -50,8 +49,7 @@ public final class Price {
 		super();
 
 		if (amount == null) {
-			throw new NullPointerException(
-					"Tried to construct a new Price objects with amount==null");
+			throw new NullPointerException("Tried to construct a new Price objects with amount==null");
 		}
 
 		this.amount = new BigDecimal(amount);
@@ -67,16 +65,15 @@ public final class Price {
 		super();
 
 		if (amount == null) {
-			throw new NullPointerException(
-					"Tried to construct a new Price objects with string amount==null");
+			throw new NullPointerException("Tried to construct a new Price objects with string amount==null");
 		}
 
 		this.amount = new BigDecimal(amount);
 	}
 
 	/**
-	 * Adds the passed {@link Price} object to "this" object. A new instance of {@link Price}
-	 * will be returned.
+	 * Adds the passed {@link Price} object to "this" object. A new instance of
+	 * {@link Price} will be returned.
 	 * 
 	 * @param price
 	 * @return
@@ -143,8 +140,8 @@ public final class Price {
 	}
 
 	/**
-	 * Returns whether the two {@link Price} instances are equal allowing null values. If both
-	 * prices are null, they will be considered equal.
+	 * Returns whether the two {@link Price} instances are equal allowing null
+	 * values. If both prices are null, they will be considered equal.
 	 * 
 	 * @param price1
 	 * @param price2

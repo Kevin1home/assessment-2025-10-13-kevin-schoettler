@@ -14,7 +14,7 @@ public class PriceList extends ArrayList<Price> {
 	public void sortDescending() {
 		sort((Price p1, Price p2) -> compare(p2, p1));
 	}
-	
+
 	private int compare(Price p1, Price p2) {
 		return p1.getAmount().compareTo(p2.getAmount());
 	}

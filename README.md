@@ -146,6 +146,22 @@ This defines whether percentage is applied first or absolute markup, e.g.
 * *firstPerCent=true*: ( 100 + 10% ) + 10 = 120
 * *firstPerCent=false*: ( 100 + 10 ) + 10% = 121
 
+# git/bitbucket branching model and auto format
+
+Please create a (feature) branch based on the master branch and commit/push into this feature branch.
+
+Final work then is merged via a pull request into the master.
+
+Please also make sure that the diffs are clean (regarding line feeds etc.). 
+ 
+The code has been formatted using the default Eclipse Formatter. 
+
+You can enforce auto-format via Eclipse  Preferences:
+
+Java / Editor / Save Actions
+* [/] Format Source Code
+* [/] Organize Imports
+
 # Final note
 
 Note that this is an assessment project, so there might be - like in real life projects - mistakes.
