@@ -7,6 +7,17 @@ import java.math.BigDecimal;
  * 
  */
 public class CalculationModelDetail {
+	public CalculationModelDetail(BigDecimal perCent, Price absolute, PriceRange priceRange) {
+		super();
+		this.perCent = perCent;
+		this.absolute = absolute;
+		this.priceRange = priceRange;
+	}
+
+	public CalculationModelDetail() {
+		super();
+	}
+
 	private BigDecimal perCent;
 
 	/**
