@@ -32,11 +32,9 @@ mvn package
 
 # Libraries used #
 
-* *Commons IO* from https://commons.apache.org/proper/commons-io/
 * *Commons Logging* from https://commons.apache.org/proper/commons-logging/
 * *Dom4J* from https://dom4j.github.io/
-* *JUnit* from http://junit.org/junit5/
-* *XMLUnit* from http://www.xmlunit.org/
+* *JUnit* from http://junit.org/junit4/
 
 # Coding #
 
