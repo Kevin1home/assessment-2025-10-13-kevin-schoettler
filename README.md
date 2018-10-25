@@ -24,7 +24,7 @@ At SoftConEx we cultivate an open style of discussing problems and questions. Do
 * Maven 3.3.9 or higher
 * Eclipse Photon (4.8) or higher; IntelliJ IDEA 2017.2.5 is fine as well
 * JUnit Tests should run without error
-* Maven should produce a .jar file without errors (this includes that all tests run successfully)
+* Maven (mvn clean install) should produce a .jar file without errors (this includes that all tests run successfully)
 
 ```
 mvn package
