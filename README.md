@@ -1,4 +1,4 @@
-README for the assessment project. If you look at this file in BitBucket/Eclipse/IDEA, the Markdown formatting will be applied.
+README for the assessment project. If you look at this file in Gitlab/Eclipse/IDEA, the Markdown formatting will be applied.
 
 # Introduction #
 
@@ -55,39 +55,6 @@ readily available throughout the code without any other changes.
 
 The assessment project uses the Commons Logging API. 
 
-The basic usage is really very simple. First instantiate a LOG object. This is done typically as a static final variable which can be used throughout the class:
-
-```
-#!java
-private static final Log LOG = LogFactory.getLog(SimpleTest.class);
-```
-
-Logging a message in the assessment project is always done on the so-called INFO level:
-
-```
-#!java
-LOG.info("Price: " + price);
-```
-
-Logging an exception is done on the ERROR level:
-
-```
-#!java
-LOG.error(ex.getMessage(), ex);
-```
-
-*Important notes on logging:*
-
-* Never use System.out.print to log messages on the console, but LOG.info
-* Never use ex.printStackTrace() to log an exception, but LOG.error
-
-*Important notes on exceptions:*
-
-* Never "just" ignore Exceptions, always LOG on error, warn or info level
-  * This is not 100% correct, there are exceptions like NumberFormatException which are rather user input errors than real exceptions
-
-Reason is that silently ignoring exceptions can make things very difficult to debug in production.
-
 ## toXML() / parse ##
 
 The classes typically have a toXML() and a parse() method which will convert back and forward between a Java object and XML in a fairly simple way (through Dom4j). 
@@ -143,7 +110,7 @@ This defines whether percentage is applied first or absolute markup, e.g.
 * *firstPerCent=true*: ( 100 + 10% ) + 10 = 120
 * *firstPerCent=false*: ( 100 + 10 ) + 10% = 121
 
-# git/bitbucket branching model and auto format
+# git branching model and auto format
 
 Please create a (feature) branch based on the master branch and commit/push into this feature branch.
 
