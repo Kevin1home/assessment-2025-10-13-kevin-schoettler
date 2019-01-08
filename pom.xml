@@ -8,22 +8,35 @@
   <name>sce-assessment</name>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <version.maven-enforcer-plugin>3.0.0-M2</version.maven-enforcer-plugin>
+    <version.maven.min>3.5.3</version.maven.min>
+    <version.maven-compiler-plugin>3.8.0</version.maven-compiler-plugin>
+    <version.maven-clean-plugin>3.1.0</version.maven-clean-plugin>
+    <version.maven-deploy-plugin>3.0.0-M1</version.maven-deploy-plugin>
+    <version.maven-install-plugin>3.0.0-M1</version.maven-install-plugin>
+    <version.maven-jar-plugin>3.1.0</version.maven-jar-plugin>
+    <version.maven-resources-plugin>3.1.0</version.maven-resources-plugin>
+    <version.maven-site-plugin>3.7.1</version.maven-site-plugin>
+    <version.maven-surefire-plugin>2.22.1</version.maven-surefire-plugin>
+    <version.dom4j>2.1.1</version.dom4j>
+    <version.commons-logging>1.2</version.commons-logging>
+    <version.junit>4.12</version.junit>
   </properties>
   <build>
     <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.8.0</version>
+        <version>${version.maven-compiler-plugin}</version>
         <configuration>
-          <source>11</source>
-          <target>11</target>
+          <source>10</source>
+          <target>10</target>
         </configuration>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-enforcer-plugin</artifactId>
-        <version>3.0.0-M2</version>
+        <version>${version.maven-enforcer-plugin}</version>
         <executions>
           <execution>
             <id>enforce-maven</id>
@@ -33,7 +46,7 @@
             <configuration>
               <rules>
                 <requireMavenVersion>
-                  <version>3.5.2</version>
+                  <version>${version.maven.min}</version>
                 </requireMavenVersion>
               </rules>
             </configuration>
@@ -43,37 +56,37 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-clean-plugin</artifactId>
-        <version>3.1.0</version>
+        <version>${version.maven-clean-plugin}</version>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-deploy-plugin</artifactId>
-        <version>3.0.0-M1</version>
+        <version>${version.maven-deploy-plugin}</version>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-install-plugin</artifactId>
-        <version>3.0.0-M1</version>
+        <version>${version.maven-install-plugin}</version>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-jar-plugin</artifactId>
-        <version>3.1.0</version>
+        <version>${version.maven-jar-plugin}</version>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-resources-plugin</artifactId>
-        <version>3.1.0</version>
+        <version>${version.maven-resources-plugin}</version>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-site-plugin</artifactId>
-        <version>3.7.1</version>
+        <version>${version.maven-site-plugin}</version>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
-        <version>2.22.1</version>
+        <version>${version.maven-surefire-plugin}</version>
       </plugin>
     </plugins>
   </build>
@@ -81,17 +94,17 @@
     <dependency>
       <groupId>org.dom4j</groupId>
       <artifactId>dom4j</artifactId>
-      <version>2.1.1</version>
+      <version>${version.dom4j}</version>
     </dependency>
     <dependency>
       <groupId>commons-logging</groupId>
       <artifactId>commons-logging</artifactId>
-      <version>1.2</version>
+      <version>${version.commons-logging}</version>
     </dependency>
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
-      <version>4.12</version>
+      <version>${version.junit}</version>
       <scope>test</scope>
     </dependency>
   </dependencies>

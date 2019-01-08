@@ -20,8 +20,8 @@ At SoftConEx we cultivate an open style of discussing problems and questions. Do
 # Requirements/Installation #
 
 * Git
-* OpenJDK 11 or higher
-* Maven 3.3.9 or higher
+* OpenJDK version as defined per source/target level
+* Maven min version as defined per maven enforcer plugin
 * JUnit Tests should run without error
 * Maven (mvn clean install) should produce a .jar file without errors (this includes that all tests run successfully)
 
@@ -38,18 +38,6 @@ mvn package
 # Coding #
 
 ## Custom class for list ##
-
-Don't use 
-
-```
-#!java
-List<Price> list = new ArrayList<Price>();
-```
-
-but rather create a class extending ArrayList, like PriceList in the assessment project.
-
-This allows to add methods to the SomeObjectList class which will be
-readily available throughout the code without any other changes.
 
 ## Logging ##
 
