@@ -122,5 +122,7 @@ public class PriceTest extends TestCase {
 		assertFalse(Price.equals(null, new Price("5")));
 		assertFalse(Price.equals(new Price("6"), new Price("5")));
 		assertTrue(Price.equals(new Price("5"), new Price("5")));
+		assertTrue(Price.equals(new Price("5"), new Price("5.0")));
+		assertTrue(Price.equals(new Price("5.1"), new Price("5.10")));
 	}
 }

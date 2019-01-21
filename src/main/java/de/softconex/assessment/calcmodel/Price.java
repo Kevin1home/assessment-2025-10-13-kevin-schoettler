@@ -9,6 +9,8 @@ import org.dom4j.Element;
  * An immutable {@link Price} object.
  * 
  * For simplicity reasons, the price class does not have a currency.
+ * 
+ * Scale can be ignored when checking for equality, e.g. "1.2" is the same as "1.20". 
  */
 public final class Price {
 	private final BigDecimal amount;
@@ -26,8 +28,7 @@ public final class Price {
 	/**
 	 * Constructs a new {@link Price} instance.
 	 * 
-	 * @param amount
-	 *            (if null, a NullPointerException will be thrown).
+	 * @param amount (if null, a NullPointerException will be thrown).
 	 */
 	public Price(final BigDecimal amount) {
 		super();
@@ -42,8 +43,7 @@ public final class Price {
 	/**
 	 * Constructs a new {@link Price} instance.
 	 * 
-	 * @param amount
-	 *            (if null, a NullPointerException will be thrown).
+	 * @param amount (if null, a NullPointerException will be thrown).
 	 */
 	public Price(final Integer amount) {
 		super();
@@ -58,8 +58,7 @@ public final class Price {
 	/**
 	 * Constructs a new {@link Price} instance.
 	 * 
-	 * @param amount
-	 *            (if null, a NullPointerException will be thrown).
+	 * @param amount (if null, a NullPointerException will be thrown).
 	 */
 	public Price(final String amount) {
 		super();
@@ -106,8 +105,7 @@ public final class Price {
 	/**
 	 * Parse the passed element.
 	 * 
-	 * @param element
-	 *            (if element==null, null will be returned).
+	 * @param element (if element==null, null will be returned).
 	 * @return
 	 */
 	public final static Price parse(final Element element) {
@@ -126,7 +124,8 @@ public final class Price {
 		}
 
 		final Price that = (Price) obj;
-		return this.getAmount().equals(that.getAmount());
+
+		return safeEqualsIgnoreScale(this.getAmount(), that.getAmount());
 	}
 
 	@Override
@@ -157,5 +156,33 @@ public final class Price {
 		}
 
 		return price1.equals(price2);
+	}
+
+	private final static boolean safeEqualsIgnoreScale(final BigDecimal value1, final BigDecimal value2) {
+		if (value1 == value2) {
+			// includes both null
+			return true;
+		}
+
+		if (value1 == null || value2 == null) {
+			// one value null, other value not null
+			return false;
+		}
+
+		final int scale;
+		final int scale1 = value1.scale();
+		final int scale2 = value2.scale();
+
+		if (scale1 == scale2) {
+			return value1.equals(value2);
+		}
+
+		if (scale1 > scale2) {
+			scale = scale1;
+		} else {
+			scale = scale2;
+		}
+
+		return value1.setScale(scale).equals(value2.setScale(scale));
 	}
 }
