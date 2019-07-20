@@ -1,12 +1,14 @@
 package de.softconex.assessment.calcmodel;
 
-import junit.framework.TestCase;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 /**
  * Test cases for {@link CalculationModelDetailList} class.
  */
-public class CalculationModelDetailListTest extends TestCase {
+public class CalculationModelDetailListTest extends Assertions {
 	// details with price ranges
+	@Test
 	public final void testFind1() {
 		final CalculationModelDetailList list = new CalculationModelDetailList();
 
@@ -24,6 +26,7 @@ public class CalculationModelDetailListTest extends TestCase {
 	}
 
 	// one detail without price range
+	@Test
 	public final void testFind2() {
 		final CalculationModelDetailList list = new CalculationModelDetailList();
 

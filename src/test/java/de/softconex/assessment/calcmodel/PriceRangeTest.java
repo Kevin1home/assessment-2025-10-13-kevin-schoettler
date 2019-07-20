@@ -1,17 +1,18 @@
 package de.softconex.assessment.calcmodel;
 
-import junit.framework.TestCase;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.dom4j.Element;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 /**
  * Test cases for {@link PriceRange} class.
  */
-public class PriceRangeTest extends TestCase {
+public class PriceRangeTest extends Assertions {
 	private final static Log LOG = LogFactory.getLog(PriceRangeTest.class);
 
+	@Test
 	public void testEquals1() {
 		assertEquals(new PriceRange(null, null), new PriceRange(null, null));
 		assertEquals(new PriceRange(1, 5), new PriceRange(1, 5));
@@ -23,6 +24,7 @@ public class PriceRangeTest extends TestCase {
 		assertTrue(range.equals(range));
 	}
 
+	@Test
 	public void testToString() {
 		// make sure no NullPointerException is thrown for ranges w/o
 		// minimum/maximum
@@ -30,6 +32,7 @@ public class PriceRangeTest extends TestCase {
 		assertNotNull(new PriceRange(2, 3).toString());
 	}
 
+	@Test
 	public void testContains() {
 		assertFalse(new PriceRange(1, 10).contains(new Price(0)));
 		assertFalse(new PriceRange(1, 10).contains(new Price("0.99")));
@@ -41,6 +44,7 @@ public class PriceRangeTest extends TestCase {
 		assertFalse(new PriceRange(1, 10).contains(new Price("10.01")));
 	}
 
+	@Test
 	public void testToXmlAndParse1() {
 		final PriceRange written = new PriceRange(null, null);
 
@@ -52,6 +56,7 @@ public class PriceRangeTest extends TestCase {
 		assertEquals(parsed, written);
 	}
 
+	@Test
 	public void testToXmlAndParse2() {
 		final PriceRange written = new PriceRange(new Price(1), null);
 
@@ -63,6 +68,7 @@ public class PriceRangeTest extends TestCase {
 		assertEquals(parsed, written);
 	}
 
+	@Test
 	public void testToXmlAndParse3() {
 		final PriceRange written = new PriceRange(null, new Price(2));
 
@@ -74,6 +80,7 @@ public class PriceRangeTest extends TestCase {
 		assertEquals(parsed, written);
 	}
 
+	@Test
 	public void testToXmlAndParse4() {
 		final PriceRange written = new PriceRange(new Price(1), new Price(2));
 

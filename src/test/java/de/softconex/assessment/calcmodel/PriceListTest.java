@@ -1,11 +1,13 @@
 package de.softconex.assessment.calcmodel;
 
-import junit.framework.TestCase;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 /**
  * Test cases for {@link PriceList} class.
  */
-public class PriceListTest extends TestCase {
+public class PriceListTest extends Assertions {
+	@Test
 	public void testSort() {
 		final PriceList list = new PriceList();
 		list.add(new Price(5));

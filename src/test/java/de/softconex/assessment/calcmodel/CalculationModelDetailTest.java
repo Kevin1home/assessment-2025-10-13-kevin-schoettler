@@ -1,12 +1,14 @@
 package de.softconex.assessment.calcmodel;
 
-import junit.framework.TestCase;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 /**
  * Test cases for {@link CalculationModelDetail} class.
  */
-public class CalculationModelDetailTest extends TestCase {
+public class CalculationModelDetailTest extends Assertions {
 	// perCent==null, absolute!=null
+	@Test
 	public void testCalculate1() {
 		final CalculationModelDetail detail = new CalculationModelDetail();
 		detail.setAbsolute(new Price(5));
@@ -20,6 +22,7 @@ public class CalculationModelDetailTest extends TestCase {
 	}
 
 	// perCent==null; absolute==null
+	@Test
 	public void testCalculate2() {
 		final CalculationModelDetail detail = new CalculationModelDetail();
 		detail.setAbsolute(null);
@@ -37,6 +40,7 @@ public class CalculationModelDetailTest extends TestCase {
 	 * 
 	 * {@link NullPointerException}
 	 */
+	@Test
 	public void testToString() {
 		assertNotNull(new CalculationModelDetail().toString());
 	}

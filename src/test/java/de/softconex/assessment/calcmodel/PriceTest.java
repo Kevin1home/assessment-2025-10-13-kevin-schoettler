@@ -2,24 +2,26 @@ package de.softconex.assessment.calcmodel;
 
 import java.math.BigDecimal;
 
-import junit.framework.TestCase;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.dom4j.Element;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 /**
  * Test cases for {@link Price} class.
  */
-public class PriceTest extends TestCase {
+public class PriceTest extends Assertions {
 	private final static Log LOG = LogFactory.getLog(PriceTest.class);
 
+	@Test
 	public final void testBigDecimalConstructor1() {
 		final Price price = new Price(BigDecimal.ONE);
 		LOG.info("Price: " + price);
 		assertEquals(price.getAmount().intValue(), 1);
 	}
 
+	@Test
 	public final void testBigDecimalConstructor2() {
 		try {
 			new Price((BigDecimal) null);
@@ -29,12 +31,14 @@ public class PriceTest extends TestCase {
 		}
 	}
 
+	@Test
 	public final void testIntegerConstructor1() {
 		final Price price = new Price(Integer.valueOf(1));
 		LOG.info("Price: " + price);
 		assertEquals(price.getAmount().intValue(), 1);
 	}
 
+	@Test
 	public final void testIntegerConstructor2() {
 		try {
 			new Price((Integer) null);
@@ -44,12 +48,14 @@ public class PriceTest extends TestCase {
 		}
 	}
 
+	@Test
 	public final void testStringConstructor1() {
 		final Price price = new Price("1");
 		LOG.info("Price: " + price);
 		assertEquals(price.getAmount().intValue(), 1);
 	}
 
+	@Test
 	public final void testStringConstructor2() {
 		try {
 			new Price((String) null);
@@ -59,6 +65,7 @@ public class PriceTest extends TestCase {
 		}
 	}
 
+	@Test
 	public void testAdd() {
 		final Price price1 = new Price("5");
 
@@ -69,6 +76,7 @@ public class PriceTest extends TestCase {
 		assertEquals(new Price("6.77"), price3);
 	}
 
+	@Test
 	public void testToXmlAndParse1() {
 		final Price written = new Price("7.22");
 
@@ -79,6 +87,7 @@ public class PriceTest extends TestCase {
 		assertEquals(written, parsed);
 	}
 
+	@Test
 	public void testToXmlAndParse2() {
 		final Price written = new Price("-123.33");
 
@@ -90,6 +99,7 @@ public class PriceTest extends TestCase {
 		assertEquals(written, parsed);
 	}
 
+	@Test
 	public void testParseNull() {
 		assertNull(Price.parse(null));
 	}
@@ -98,6 +108,7 @@ public class PriceTest extends TestCase {
 	 * Test non-static equals method
 	 * 
 	 */
+	@Test
 	public void testEquals1() {
 		assertEquals(new Price("5"), new Price("5"));
 		assertNotSame(new Price("5"), new Price("15"));
@@ -108,6 +119,7 @@ public class PriceTest extends TestCase {
 		assertEquals(price, price);
 	}
 
+	@Test
 	public void testHashCode() {
 		assertEquals(new Price("5").hashCode(), new Price("5").hashCode());
 	}
@@ -116,6 +128,7 @@ public class PriceTest extends TestCase {
 	 * Test static equals method.
 	 * 
 	 */
+	@Test
 	public void testEquals2() {
 		assertTrue(Price.equals(null, null));
 		assertFalse(Price.equals(new Price("5"), null));
