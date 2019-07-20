@@ -9,7 +9,7 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <version.maven-enforcer-plugin>3.0.0-M2</version.maven-enforcer-plugin>
-    <version.maven.min>3.5.3</version.maven.min>
+    <version.maven.min>3.6.0</version.maven.min>
     <version.maven-compiler-plugin>3.8.0</version.maven-compiler-plugin>
     <version.maven-clean-plugin>3.1.0</version.maven-clean-plugin>
     <version.maven-deploy-plugin>3.0.0-M1</version.maven-deploy-plugin>
@@ -29,8 +29,8 @@
         <artifactId>maven-compiler-plugin</artifactId>
         <version>${version.maven-compiler-plugin}</version>
         <configuration>
-          <source>10</source>
-          <target>10</target>
+          <source>11</source>
+          <target>11</target>
         </configuration>
       </plugin>
       <plugin>
