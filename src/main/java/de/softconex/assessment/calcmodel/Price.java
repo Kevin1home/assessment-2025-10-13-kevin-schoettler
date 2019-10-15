@@ -108,7 +108,7 @@ public final class Price {
 	 * @param element (if element==null, null will be returned).
 	 * @return
 	 */
-	public final static Price parse(final Element element) {
+	public static final Price parse(final Element element) {
 		if (element == null) {
 			return null;
 		}
@@ -146,7 +146,7 @@ public final class Price {
 	 * @param price2
 	 * @return
 	 */
-	public final static boolean equals(final Price price1, final Price price2) {
+	public static final boolean equals(final Price price1, final Price price2) {
 		if (price1 == null && price2 == null) {
 			return true;
 		}
@@ -158,7 +158,7 @@ public final class Price {
 		return price1.equals(price2);
 	}
 
-	private final static boolean safeEqualsIgnoreScale(final BigDecimal value1, final BigDecimal value2) {
+	private static final boolean safeEqualsIgnoreScale(final BigDecimal value1, final BigDecimal value2) {
 		if (value1 == value2) {
 			// includes both null
 			return true;

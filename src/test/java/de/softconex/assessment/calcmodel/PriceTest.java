@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Test;
  * Test cases for {@link Price} class.
  */
 public class PriceTest extends Assertions {
-	private final static Log LOG = LogFactory.getLog(PriceTest.class);
+	private static final Log LOG = LogFactory.getLog(PriceTest.class);
 
 	@Test
 	public final void testBigDecimalConstructor1() {

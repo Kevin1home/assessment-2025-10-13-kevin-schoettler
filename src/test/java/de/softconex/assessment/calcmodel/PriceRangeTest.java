@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
  * Test cases for {@link PriceRange} class.
  */
 public class PriceRangeTest extends Assertions {
-	private final static Log LOG = LogFactory.getLog(PriceRangeTest.class);
+	private static final Log LOG = LogFactory.getLog(PriceRangeTest.class);
 
 	@Test
 	public void testEquals1() {

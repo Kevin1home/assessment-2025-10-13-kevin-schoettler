@@ -9,9 +9,9 @@ import org.dom4j.Element;
  * {@link Price} range (min/max).
  */
 public class PriceRange {
-	private final static String XML_MINIMUM = "minimum";
+	private static final String XML_MINIMUM = "minimum";
 
-	private final static String XML_MAXIMUM = "maximum";
+	private static final String XML_MAXIMUM = "maximum";
 
 	private final Price minimum;
 
@@ -103,7 +103,7 @@ public class PriceRange {
 		return out;
 	}
 
-	public final static PriceRange parse(final Element parent) {
+	public static final PriceRange parse(final Element parent) {
 		Price minimum = null;
 		Price maximum = null;
 
