@@ -119,7 +119,7 @@ public final class Price {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (false == (obj instanceof Price)) {
+		if (!(obj instanceof Price)) {
 			return false;
 		}
 

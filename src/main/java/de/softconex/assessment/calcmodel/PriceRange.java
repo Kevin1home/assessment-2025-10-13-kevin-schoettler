@@ -1,6 +1,7 @@
 package de.softconex.assessment.calcmodel;
 
 import java.util.Iterator;
+import java.util.Objects;
 
 import org.dom4j.DocumentHelper;
 import org.dom4j.Element;
@@ -42,23 +43,23 @@ public class PriceRange {
 	@Override
 	public boolean equals(Object obj) {
 		// includes obj == null and obj is nont a PriceRange object
-		if (false == (obj instanceof PriceRange)) {
+		if (!(obj instanceof PriceRange)) {
 			return false;
 		}
 
 		// now that we are sure that obj != null and obj is a PriceRange
-		// object, do the cast and compare minimum and maxium
+		// object, do the cast and compare minimum and maximum
 		final PriceRange that = (PriceRange) obj;
 
-		if (false == Price.equals(this.getMinimum(), that.getMinimum())) {
+		if (!Price.equals(this.getMinimum(), that.getMinimum())) {
 			return false;
 		}
 
-		if (false == Price.equals(this.getMaximum(), that.getMaximum())) {
-			return false;
-		}
+		return Price.equals(this.getMaximum(), that.getMaximum());
+	}
 
-		return true;
+	@Override public int hashCode() {
+		return Objects.hash(minimum, maximum);
 	}
 
 	@Override
