@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 /**
  * Test cases for {@link PriceRange} class.
  */
+@SuppressWarnings("squid:S1192")
 public class PriceRangeTest extends Assertions {
 	private static final Log LOG = LogFactory.getLog(PriceRangeTest.class);
 
