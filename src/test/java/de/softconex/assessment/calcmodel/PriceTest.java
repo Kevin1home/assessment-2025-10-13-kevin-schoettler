@@ -16,53 +16,32 @@ public class PriceTest extends Assertions {
 
 	@Test
 	public final void testBigDecimalConstructor1() {
-		final Price price = new Price(BigDecimal.ONE);
-		LOG.info("Price: " + price);
-		assertEquals(price.getAmount().intValue(), 1);
+		assertEquals(new Price(BigDecimal.ONE).getAmount().intValue(), 1);
 	}
 
 	@Test
 	public final void testBigDecimalConstructor2() {
-		try {
-			new Price((BigDecimal) null);
-			fail();
-		} catch (final Exception ex) {
-			LOG.info("Caught expected " + ex.getMessage());
-		}
+		assertThrows(IllegalArgumentException.class, () -> new Price((BigDecimal) null));
 	}
 
 	@Test
 	public final void testIntegerConstructor1() {
-		final Price price = new Price(Integer.valueOf(1));
-		LOG.info("Price: " + price);
-		assertEquals(price.getAmount().intValue(), 1);
+		assertEquals(new Price(1).getAmount().intValue(), 1);
 	}
 
 	@Test
 	public final void testIntegerConstructor2() {
-		try {
-			new Price((Integer) null);
-			fail();
-		} catch (final Exception ex) {
-			LOG.info("Caught expected " + ex.getMessage());
-		}
+		assertThrows(IllegalArgumentException.class, () -> new Price((Integer) null));
 	}
 
 	@Test
 	public final void testStringConstructor1() {
-		final Price price = new Price("1");
-		LOG.info("Price: " + price);
-		assertEquals(price.getAmount().intValue(), 1);
+		assertEquals(new Price("1").getAmount().intValue(), 1);
 	}
 
 	@Test
 	public final void testStringConstructor2() {
-		try {
-			new Price((String) null);
-			fail();
-		} catch (final Exception ex) {
-			LOG.info("Caught expected " + ex.getMessage());
-		}
+		assertThrows(IllegalArgumentException.class, () -> new Price((String) null));
 	}
 
 	@Test
@@ -124,11 +103,8 @@ public class PriceTest extends Assertions {
 		assertEquals(new Price("5").hashCode(), new Price("5").hashCode());
 	}
 
-	/**
-	 * Test static equals method.
-	 * 
-	 */
 	@Test
+	@SuppressWarnings("ConstantConditions")
 	public void testEquals2() {
 		assertTrue(Price.equals(null, null));
 		assertFalse(Price.equals(new Price("5"), null));

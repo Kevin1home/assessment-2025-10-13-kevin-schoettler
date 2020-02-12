@@ -1,6 +1,7 @@
 package de.softconex.assessment.calcmodel;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 import org.dom4j.DocumentHelper;
 import org.dom4j.Element;
@@ -18,8 +19,6 @@ public final class Price {
 	/**
 	 * Returns the amount; since a {@link BigDecimal} itself is immutable, no
 	 * defensive copies will be made here.
-	 * 
-	 * @return
 	 */
 	public final BigDecimal getAmount() {
 		return amount;
@@ -30,11 +29,10 @@ public final class Price {
 	 * 
 	 * @param amount (if null, a NullPointerException will be thrown).
 	 */
-	public Price(final BigDecimal amount) {
-		super();
+	public Price(BigDecimal amount) {
 
 		if (amount == null) {
-			throw new NullPointerException("Tried to construct a new Price objects with amount==null");
+			throw new IllegalArgumentException("Tried to construct a new Price objects with amount==null");
 		}
 
 		this.amount = amount;
@@ -45,11 +43,10 @@ public final class Price {
 	 * 
 	 * @param amount (if null, a NullPointerException will be thrown).
 	 */
-	public Price(final Integer amount) {
-		super();
+	public Price(Integer amount) {
 
 		if (amount == null) {
-			throw new NullPointerException("Tried to construct a new Price objects with amount==null");
+			throw new IllegalArgumentException("Tried to construct a new Price objects with amount==null");
 		}
 
 		this.amount = new BigDecimal(amount);
@@ -60,11 +57,10 @@ public final class Price {
 	 * 
 	 * @param amount (if null, a NullPointerException will be thrown).
 	 */
-	public Price(final String amount) {
-		super();
+	public Price(String amount) {
 
 		if (amount == null) {
-			throw new NullPointerException("Tried to construct a new Price objects with string amount==null");
+			throw new IllegalArgumentException("Tried to construct a new Price objects with string amount==null");
 		}
 
 		this.amount = new BigDecimal(amount);
@@ -73,18 +69,13 @@ public final class Price {
 	/**
 	 * Adds the passed {@link Price} object to "this" object. A new instance of
 	 * {@link Price} will be returned.
-	 * 
-	 * @param price
-	 * @return
 	 */
-	public Price add(final Price price) {
+	public Price add(Price price) {
 		return new Price(getAmount().add(price.getAmount()));
 	}
 
 	/**
 	 * Convert to XML element using the default element name ("price").
-	 * 
-	 * @return
 	 */
 	public Element toXml() {
 		return toXml("price");
@@ -92,12 +83,9 @@ public final class Price {
 
 	/**
 	 * Convert to XML element using the passed elementName.
-	 * 
-	 * @param elementName
-	 * @return
 	 */
-	public Element toXml(final String elementName) {
-		final Element out = DocumentHelper.createElement(elementName);
+	public Element toXml(String elementName) {
+		Element out = DocumentHelper.createElement(elementName);
 		out.addAttribute("amount", getAmount().toString());
 		return out;
 	}
@@ -106,14 +94,13 @@ public final class Price {
 	 * Parse the passed element.
 	 * 
 	 * @param element (if element==null, null will be returned).
-	 * @return
 	 */
-	public static final Price parse(final Element element) {
+	public static Price parse(Element element) {
 		if (element == null) {
 			return null;
 		}
 
-		final String amount = element.attributeValue("amount");
+		String amount = element.attributeValue("amount");
 		return new Price(amount);
 	}
 
@@ -123,14 +110,9 @@ public final class Price {
 			return false;
 		}
 
-		final Price that = (Price) obj;
+		Price that = (Price) obj;
 
 		return safeEqualsIgnoreScale(this.getAmount(), that.getAmount());
-	}
-
-	@Override
-	public String toString() {
-		return getAmount().toString();
 	}
 
 	@Override
@@ -138,15 +120,16 @@ public final class Price {
 		return getAmount().hashCode();
 	}
 
+	@Override
+	public String toString() {
+		return getAmount().toString();
+	}
+
 	/**
 	 * Returns whether the two {@link Price} instances are equal allowing null
 	 * values. If both prices are null, they will be considered equal.
-	 * 
-	 * @param price1
-	 * @param price2
-	 * @return
 	 */
-	public static final boolean equals(final Price price1, final Price price2) {
+	public static boolean equals(Price price1, Price price2) {
 		if (price1 == null && price2 == null) {
 			return true;
 		}
@@ -158,7 +141,10 @@ public final class Price {
 		return price1.equals(price2);
 	}
 
-	private static final boolean safeEqualsIgnoreScale(final BigDecimal value1, final BigDecimal value2) {
+	private static final RoundingMode ROUNDING_MODE = RoundingMode.HALF_UP;
+
+	@SuppressWarnings({ "NumberEquality", "BigDecimalEquals" })
+	private static boolean safeEqualsIgnoreScale(BigDecimal value1, BigDecimal value2) {
 		if (value1 == value2) {
 			// includes both null
 			return true;
@@ -169,20 +155,16 @@ public final class Price {
 			return false;
 		}
 
-		final int scale;
-		final int scale1 = value1.scale();
-		final int scale2 = value2.scale();
+		int scale;
+		int scale1 = value1.scale();
+		int scale2 = value2.scale();
 
 		if (scale1 == scale2) {
 			return value1.equals(value2);
 		}
 
-		if (scale1 > scale2) {
-			scale = scale1;
-		} else {
-			scale = scale2;
-		}
+		scale = Math.max(scale1, scale2);
 
-		return value1.setScale(scale).equals(value2.setScale(scale));
+		return value1.setScale(scale, ROUNDING_MODE).equals(value2.setScale(scale, ROUNDING_MODE));
 	}
 }

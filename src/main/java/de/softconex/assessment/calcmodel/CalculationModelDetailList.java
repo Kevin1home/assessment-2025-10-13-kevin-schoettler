@@ -7,7 +7,7 @@ import java.util.ArrayList;
  */
 @SuppressWarnings("serial")
 public class CalculationModelDetailList extends ArrayList<CalculationModelDetail> {
-	public CalculationModelDetail find(final Price price) {
+	public CalculationModelDetail find(Price price) {
 		return this.stream()
 				.filter((CalculationModelDetail d) -> d.getPriceRange() == null || d.getPriceRange().contains(price))
 				.findFirst().orElse(null);

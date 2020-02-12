@@ -8,14 +8,15 @@ import java.util.ArrayList;
 @SuppressWarnings("serial")
 public class PriceList extends ArrayList<Price> {
 	public void sortAscending() {
-		sort((Price p1, Price p2) -> compare(p1, p2));
+		sort(PriceList::compare);
 	}
 
+	@SuppressWarnings("squid:S2234")
 	public void sortDescending() {
 		sort((Price p1, Price p2) -> compare(p2, p1));
 	}
 
-	private int compare(Price p1, Price p2) {
+	private static int compare(Price p1, Price p2) {
 		return p1.getAmount().compareTo(p2.getAmount());
 	}
 }

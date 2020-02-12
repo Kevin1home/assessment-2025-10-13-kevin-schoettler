@@ -21,7 +21,7 @@ public class PriceRangeTest extends Assertions {
 		assertNotSame(new PriceRange(1, 4), Boolean.FALSE);
 
 		final PriceRange range = new PriceRange(0, 1);
-		assertTrue(range.equals(range));
+		assertEquals(range, range);
 	}
 
 	@Test

@@ -18,15 +18,13 @@ public class PriceRange {
 
 	private final Price maximum;
 
-	public PriceRange(final int minimum, final int maximum) {
-		super();
+	public PriceRange(int minimum, int maximum) {
 
 		this.minimum = new Price(minimum);
 		this.maximum = new Price(maximum);
 	}
 
-	public PriceRange(final Price minimum, final Price maximum) {
-		super();
+	public PriceRange(Price minimum, Price maximum) {
 
 		this.minimum = minimum;
 		this.maximum = maximum;
@@ -42,14 +40,14 @@ public class PriceRange {
 
 	@Override
 	public boolean equals(Object obj) {
-		// includes obj == null and obj is nont a PriceRange object
+		// includes obj == null and obj is not a PriceRange object
 		if (!(obj instanceof PriceRange)) {
 			return false;
 		}
 
 		// now that we are sure that obj != null and obj is a PriceRange
 		// object, do the cast and compare minimum and maximum
-		final PriceRange that = (PriceRange) obj;
+		PriceRange that = (PriceRange) obj;
 
 		if (!Price.equals(this.getMinimum(), that.getMinimum())) {
 			return false;
@@ -58,7 +56,8 @@ public class PriceRange {
 		return Price.equals(this.getMaximum(), that.getMaximum());
 	}
 
-	@Override public int hashCode() {
+	@Override
+	public int hashCode() {
 		return Objects.hash(minimum, maximum);
 	}
 
@@ -70,28 +69,21 @@ public class PriceRange {
 	/**
 	 * Returns whether the passed price is inside "this" range. Null values
 	 * minimum/maximum will be ignored (considered as "no limit").
-	 * 
-	 * @param price
-	 * @return
 	 */
-	public boolean contains(final Price price) {
-		if (getMinimum() != null) {
-			if (getMinimum().getAmount().compareTo(price.getAmount()) > 0) {
-				return false;
-			}
+	public boolean contains(Price price) {
+		if (getMinimum() != null && (getMinimum().getAmount().compareTo(price.getAmount()) > 0)) {
+			return false;
 		}
 
 		if (getMaximum() != null) {
-			if (getMaximum().getAmount().compareTo(price.getAmount()) < 0) {
-				return false;
-			}
+			return getMaximum().getAmount().compareTo(price.getAmount()) >= 0;
 		}
 
 		return true;
 	}
 
 	public Element toXml() {
-		final Element out = DocumentHelper.createElement("priceRange");
+		Element out = DocumentHelper.createElement("priceRange");
 
 		if (getMinimum() != null) {
 			out.add(getMinimum().toXml(XML_MINIMUM));
@@ -104,12 +96,12 @@ public class PriceRange {
 		return out;
 	}
 
-	public static final PriceRange parse(final Element parent) {
+	public static PriceRange parse(Element parent) {
 		Price minimum = null;
 		Price maximum = null;
 
-		for (final Iterator<?> it = parent.elementIterator(); it.hasNext();) {
-			final Element element = (Element) it.next();
+		for (Iterator<?> it = parent.elementIterator(); it.hasNext();) {
+			Element element = (Element) it.next();
 
 			if (element.getName().equals(XML_MINIMUM)) {
 				minimum = Price.parse(element);

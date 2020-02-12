@@ -2,28 +2,20 @@ package de.softconex.assessment.calcmodel;
 
 import java.math.BigDecimal;
 
-/**
- * Detail for a {@link CalculationModel}.
- * 
- */
 public class CalculationModelDetail {
 	public CalculationModelDetail(BigDecimal perCent, Price absolute, PriceRange priceRange) {
-		super();
 		this.perCent = perCent;
 		this.absolute = absolute;
 		this.priceRange = priceRange;
 	}
 
 	public CalculationModelDetail() {
-		super();
 	}
 
 	private BigDecimal perCent;
 
 	/**
 	 * PerCent (0.5 = 50%).
-	 * 
-	 * @return
 	 */
 	public final BigDecimal getPerCent() {
 		return perCent;
@@ -53,7 +45,7 @@ public class CalculationModelDetail {
 		this.priceRange = priceRange;
 	}
 
-	public final Price calculate(final Price price, final boolean firstPerCent) {
+	public final Price calculate(Price price, boolean firstPerCent) {
 		// TODO - homework: support firstPerCent method argument
 		// TODO - homework: support perCent attribute
 		// TODO - homework: check if the price is inside the passed range, if
