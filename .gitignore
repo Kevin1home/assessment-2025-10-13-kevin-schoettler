@@ -8,3 +8,6 @@ bin
 .idea/
 sce-assessment.iml
 
+*.iml
+*.ipr
+*.iws
