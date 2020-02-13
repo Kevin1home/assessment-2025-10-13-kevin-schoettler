@@ -45,7 +45,7 @@ public class CalculationModelDetail {
 		this.priceRange = priceRange;
 	}
 
-	@SuppressWarnings({ "squid:S1135", "unused" })
+	@SuppressWarnings({ "unused" })
 	public final Price calculate(Price price, boolean firstPerCent) {
 		// TODO - homework: support firstPerCent method argument
 		// TODO - homework: support perCent attribute

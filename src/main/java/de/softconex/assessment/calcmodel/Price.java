@@ -117,7 +117,8 @@ public final class Price {
 
 	@Override
 	public int hashCode() {
-		return getAmount().hashCode();
+		// normalize scale to match usage of #safeEqualsIgnoreScale() in #equals
+		return getAmount().setScale(2, RoundingMode.HALF_UP).hashCode();
 	}
 
 	@Override

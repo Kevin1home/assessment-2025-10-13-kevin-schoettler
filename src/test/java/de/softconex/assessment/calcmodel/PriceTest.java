@@ -8,44 +8,41 @@ import org.dom4j.Element;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-/**
- * Test cases for {@link Price} class.
- */
 public class PriceTest extends Assertions {
 	private static final Log LOG = LogFactory.getLog(PriceTest.class);
 
 	@Test
-	public final void testBigDecimalConstructor1() {
+	public final void validBigDecimalConstructor() {
 		assertEquals(new Price(BigDecimal.ONE).getAmount().intValue(), 1);
 	}
 
 	@Test
-	public final void testBigDecimalConstructor2() {
+	public final void invalidBigDecimalConstructor() {
 		assertThrows(IllegalArgumentException.class, () -> new Price((BigDecimal) null));
 	}
 
 	@Test
-	public final void testIntegerConstructor1() {
+	public final void validIntegerConstructor() {
 		assertEquals(new Price(1).getAmount().intValue(), 1);
 	}
 
 	@Test
-	public final void testIntegerConstructor2() {
+	public final void invalidIntegerConstructor() {
 		assertThrows(IllegalArgumentException.class, () -> new Price((Integer) null));
 	}
 
 	@Test
-	public final void testStringConstructor1() {
+	public final void validStringConstructor() {
 		assertEquals(new Price("1").getAmount().intValue(), 1);
 	}
 
 	@Test
-	public final void testStringConstructor2() {
+	public final void invalidStringConstructor() {
 		assertThrows(IllegalArgumentException.class, () -> new Price((String) null));
 	}
 
 	@Test
-	public void testAdd() {
+	public void add() {
 		final Price price1 = new Price("5");
 
 		final Price price2 = new Price("1.77");
@@ -56,7 +53,7 @@ public class PriceTest extends Assertions {
 	}
 
 	@Test
-	public void testToXmlAndParse1() {
+	public void toXmlAndParseWithPositiveValue() {
 		final Price written = new Price("7.22");
 
 		final Element writtenElement = written.toXml();
@@ -67,7 +64,7 @@ public class PriceTest extends Assertions {
 	}
 
 	@Test
-	public void testToXmlAndParse2() {
+	public void toXmlAndParseWithNegativeValue() {
 		final Price written = new Price("-123.33");
 
 		final Element writtenElement = written.toXml("test");
@@ -79,16 +76,12 @@ public class PriceTest extends Assertions {
 	}
 
 	@Test
-	public void testParseNull() {
+	public void parseNull() {
 		assertNull(Price.parse(null));
 	}
 
-	/**
-	 * Test non-static equals method
-	 * 
-	 */
 	@Test
-	public void testEquals1() {
+	public void equalsMethod() {
 		assertEquals(new Price("5"), new Price("5"));
 		assertNotSame(new Price("5"), new Price("15"));
 		assertNotSame(new Price("5"), null);
@@ -99,13 +92,14 @@ public class PriceTest extends Assertions {
 	}
 
 	@Test
-	public void testHashCode() {
+	public void hashCodeMethod() {
 		assertEquals(new Price("5").hashCode(), new Price("5").hashCode());
+		assertEquals(new Price("5").hashCode(), new Price("5.0").hashCode());
 	}
 
 	@Test
 	@SuppressWarnings("ConstantConditions")
-	public void testEquals2() {
+	public void staticEqualsMethod() {
 		assertTrue(Price.equals(null, null));
 		assertFalse(Price.equals(new Price("5"), null));
 		assertFalse(Price.equals(null, new Price("5")));

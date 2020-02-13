@@ -3,13 +3,9 @@ package de.softconex.assessment.calcmodel;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-/**
- * Test cases for {@link CalculationModelDetailList} class.
- */
 public class CalculationModelDetailListTest extends Assertions {
-	// details with price ranges
 	@Test
-	public final void testFind1() {
+	public final void found() {
 		final CalculationModelDetailList list = new CalculationModelDetailList();
 
 		final CalculationModelDetail detail0 = new CalculationModelDetail();
@@ -25,9 +21,8 @@ public class CalculationModelDetailListTest extends Assertions {
 		assertNull(list.find(new Price(30)));
 	}
 
-	// one detail without price range
 	@Test
-	public final void testFind2() {
+	public final void notFound() {
 		final CalculationModelDetailList list = new CalculationModelDetailList();
 
 		final CalculationModelDetail detail0 = new CalculationModelDetail();

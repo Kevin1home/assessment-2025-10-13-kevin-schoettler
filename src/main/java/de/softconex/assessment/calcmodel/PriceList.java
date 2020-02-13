@@ -11,7 +11,6 @@ public class PriceList extends ArrayList<Price> {
 		sort(PriceList::compare);
 	}
 
-	@SuppressWarnings("squid:S2234")
 	public void sortDescending() {
 		sort((Price p1, Price p2) -> compare(p2, p1));
 	}
