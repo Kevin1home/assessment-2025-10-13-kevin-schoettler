@@ -104,20 +104,26 @@ public final class Price {
 		return new Price(amount);
 	}
 
+	@SuppressWarnings("EqualsWhichDoesntCheckParameterClass")
 	@Override
 	public boolean equals(Object obj) {
+		return customEqualsIgnoringScale(obj);
+	}
+
+	private boolean customEqualsIgnoringScale(Object obj) {
 		if (!(obj instanceof Price)) {
 			return false;
 		}
 
-		Price that = (Price) obj;
-
-		return safeEqualsIgnoreScale(this.getAmount(), that.getAmount());
+		return safeEqualsIgnoreScale(this.getAmount(), ((Price) obj).getAmount());
 	}
 
 	@Override
 	public int hashCode() {
-		// normalize scale to match usage of #safeEqualsIgnoreScale() in #equals
+		return customHashCodeIgnoringScale();
+	}
+
+	private int customHashCodeIgnoringScale() {
 		return getAmount().setScale(2, RoundingMode.HALF_UP).hashCode();
 	}
 

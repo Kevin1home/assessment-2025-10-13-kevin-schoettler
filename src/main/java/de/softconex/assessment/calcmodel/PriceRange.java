@@ -19,13 +19,11 @@ public class PriceRange {
 	private final Price maximum;
 
 	public PriceRange(int minimum, int maximum) {
-
 		this.minimum = new Price(minimum);
 		this.maximum = new Price(maximum);
 	}
 
 	public PriceRange(Price minimum, Price maximum) {
-
 		this.minimum = minimum;
 		this.maximum = maximum;
 	}
@@ -39,21 +37,14 @@ public class PriceRange {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		// includes obj == null and obj is not a PriceRange object
-		if (!(obj instanceof PriceRange)) {
+	public boolean equals(Object o) {
+		if (this == o)
+			return true;
+		if (o == null || getClass() != o.getClass())
 			return false;
-		}
-
-		// now that we are sure that obj != null and obj is a PriceRange
-		// object, do the cast and compare minimum and maximum
-		PriceRange that = (PriceRange) obj;
-
-		if (!Price.equals(this.getMinimum(), that.getMinimum())) {
-			return false;
-		}
-
-		return Price.equals(this.getMaximum(), that.getMaximum());
+		PriceRange that = (PriceRange) o;
+		return Objects.equals(minimum, that.minimum) &&
+				Objects.equals(maximum, that.maximum);
 	}
 
 	@Override
