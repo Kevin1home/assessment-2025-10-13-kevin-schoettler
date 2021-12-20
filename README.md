@@ -33,7 +33,7 @@ mvn package
 
 * *Commons Logging* from https://commons.apache.org/proper/commons-logging/
 * *Dom4J* from https://dom4j.github.io/
-* *JUnit* from http://junit.org/junit4/
+* *JUnit* from http://junit.org/junit5/
 
 # Coding #
 
