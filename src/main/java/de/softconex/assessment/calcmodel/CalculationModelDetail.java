@@ -3,68 +3,68 @@ package de.softconex.assessment.calcmodel;
 import java.math.BigDecimal;
 
 public class CalculationModelDetail {
-	public CalculationModelDetail(BigDecimal perCent, Price absolute, PriceRange priceRange) {
-		this.perCent = perCent;
-		this.absolute = absolute;
-		this.priceRange = priceRange;
-	}
+    public CalculationModelDetail(BigDecimal perCent, Price absolute, PriceRange priceRange) {
+        this.perCent = perCent;
+        this.absolute = absolute;
+        this.priceRange = priceRange;
+    }
 
-	public CalculationModelDetail() {
-	}
+    public CalculationModelDetail() {
+    }
 
-	private BigDecimal perCent;
+    private BigDecimal perCent;
 
-	/**
-	 * PerCent (0.5 = 50%).
-	 */
-	public final BigDecimal getPerCent() {
-		return perCent;
-	}
+    /**
+     * PerCent (0.5 = 50%).
+     */
+    public final BigDecimal getPerCent() {
+        return perCent;
+    }
 
-	public final void setPerCent(BigDecimal perCent) {
-		this.perCent = perCent;
-	}
+    public final void setPerCent(BigDecimal perCent) {
+        this.perCent = perCent;
+    }
 
-	private Price absolute;
+    private Price absolute;
 
-	public final Price getAbsolute() {
-		return absolute;
-	}
+    public final Price getAbsolute() {
+        return absolute;
+    }
 
-	public final void setAbsolute(Price absolute) {
-		this.absolute = absolute;
-	}
+    public final void setAbsolute(Price absolute) {
+        this.absolute = absolute;
+    }
 
-	private PriceRange priceRange;
+    private PriceRange priceRange;
 
-	public final PriceRange getPriceRange() {
-		return priceRange;
-	}
+    public final PriceRange getPriceRange() {
+        return priceRange;
+    }
 
-	public final void setPriceRange(PriceRange priceRange) {
-		this.priceRange = priceRange;
-	}
+    public final void setPriceRange(PriceRange priceRange) {
+        this.priceRange = priceRange;
+    }
 
-	@SuppressWarnings({ "unused" })
-	public final Price calculate(Price price, boolean firstPerCent) {
-		// TODO - homework: support firstPerCent method argument
-		// TODO - homework: support perCent attribute
-		// TODO - homework: check if the price is inside the passed range, if
-		// not, throw an IllegalArgumentException
+    @SuppressWarnings({"unused"})
+    public final Price calculate(Price price, boolean firstPerCent) {
+        // TODO - homework: support firstPerCent method argument
+        // TODO - homework: support perCent attribute
+        // TODO - homework: check if the price is inside the passed range, if
+        // not, throw an IllegalArgumentException
 
-		Price out = price;
+        Price out = price;
 
-		if (getAbsolute() != null) {
-			out = price.add(getAbsolute());
-		}
+        if (getAbsolute() != null) {
+            out = price.add(getAbsolute());
+        }
 
-		return out;
-	}
+        return out;
+    }
 
-	@Override
-	public String toString() {
-		return "CalculationModelDetail: " + getAbsolute() + ", " + getPerCent() + "%" + "; priceRange: "
-				+ getPriceRange();
-	}
+    @Override
+    public String toString() {
+        return "CalculationModelDetail: " + getAbsolute() + ", " + getPerCent() + "%" + "; priceRange: "
+                + getPriceRange();
+    }
 
 }
