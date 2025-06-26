@@ -106,13 +106,11 @@ Final work then is merged via a pull request into the master.
 
 Please also make sure that the diffs are clean (regarding line feeds etc.). 
  
-The code has been formatted using the default Eclipse Formatter. 
+The code has been formatted using the default Intellij Formatter.
+You can enforce auto-format via Intellij  Settings:
+File / Settings / Tools / Actions on Save
 
-You can enforce auto-format via Eclipse  Preferences:
-
-Java / Editor / Save Actions
-* [/] Format Source Code
-* [/] Organize Imports
+[/] Reformat code
 
 # Final note
 
