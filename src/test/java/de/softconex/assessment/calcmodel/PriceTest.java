@@ -1,5 +1,6 @@
 package de.softconex.assessment.calcmodel;
 
+import de.softconex.assessment.calcmodel.model.price.Price;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.dom4j.Element;
@@ -39,17 +40,38 @@ public class PriceTest extends Assertions {
     @Test
     public final void invalidStringConstructor() {
         assertThrows(IllegalArgumentException.class, () -> new Price((String) null));
+        assertThrows(IllegalArgumentException.class, () -> new Price(" "));
     }
 
     @Test
-    public void add() {
-        final Price price1 = new Price("5");
+    public void validAdd() {
+        final Price price0 = new Price("5");
+        final Price price1 = new Price("1.77");
+        final Price price2 = price0.add(price1);
 
-        final Price price2 = new Price("1.77");
+        assertEquals(new Price("6.77"), price2);
+    }
 
-        final Price price3 = price1.add(price2);
+    @Test
+    public void invalidAdd() {
+        final Price price = new Price("5");
 
-        assertEquals(new Price("6.77"), price3);
+        assertThrows(IllegalArgumentException.class, () -> price.add(null));
+    }
+
+    @Test
+    public void validMultiplyBigDecimal() {
+        final Price price0 = new Price("5.77");
+        final Price price1 = price0.multiplyBigDecimal(BigDecimal.ONE);
+
+        assertEquals(new Price("5.77"), price1);
+    }
+
+    @Test
+    public void invalidMultiplyBigDecimal() {
+        final Price price = new Price("5");
+
+        assertThrows(IllegalArgumentException.class, () -> price.multiplyBigDecimal(null));
     }
 
     @Test
@@ -76,6 +98,14 @@ public class PriceTest extends Assertions {
     }
 
     @Test
+    public void invalidToXml() {
+        final Price written = new Price("-123.33");
+
+        assertThrows(IllegalArgumentException.class, () -> written.toXml(null));
+        assertThrows(IllegalArgumentException.class, () -> written.toXml(" "));
+    }
+
+    @Test
     public void parseNull() {
         assertNull(Price.parse(null));
     }
@@ -83,18 +113,14 @@ public class PriceTest extends Assertions {
     @Test
     public void equalsMethod() {
         assertEquals(new Price("5"), new Price("5"));
+        assertEquals(new Price("5"), new Price("5.0"));
         assertNotSame(new Price("5"), new Price("15"));
+        assertNotSame(new Price("5"), new Price("5.0001"));
         assertNotSame(new Price("5"), null);
         assertNotSame(new Price("5"), Boolean.FALSE);
 
         final Price price = new Price("10");
         assertEquals(price, price);
-    }
-
-    @Test
-    public void hashCodeMethod() {
-        assertEquals(new Price("5").hashCode(), new Price("5").hashCode());
-        assertEquals(new Price("5").hashCode(), new Price("5.0").hashCode());
     }
 
     @Test
@@ -104,8 +130,23 @@ public class PriceTest extends Assertions {
         assertFalse(Price.equals(new Price("5"), null));
         assertFalse(Price.equals(null, new Price("5")));
         assertFalse(Price.equals(new Price("6"), new Price("5")));
+        assertFalse(Price.equals(new Price("5"), new Price("5.001")));
         assertTrue(Price.equals(new Price("5"), new Price("5")));
         assertTrue(Price.equals(new Price("5"), new Price("5.0")));
         assertTrue(Price.equals(new Price("5.1"), new Price("5.10")));
+    }
+
+    @Test
+    public void hashCodeMethod() {
+        assertNotSame(new Price("5").hashCode(), new Price("6").hashCode());
+        assertEquals(new Price("5").hashCode(), new Price("5").hashCode());
+        assertEquals(new Price("5").hashCode(), new Price("5.0").hashCode());
+        assertEquals(new Price("5").hashCode(), new Price("5.001").hashCode()); // cause of scale ignoring
+
+    }
+
+    @Test
+    public void toStringMethod() {
+        assertEquals(new Price("5").toString(), "5");
     }
 }

@@ -43,9 +43,9 @@ mvn package
 
 The assessment project uses the Commons Logging API. 
 
-## toXML() / parse ##
+## toXml() / parse ##
 
-The classes typically have a toXML() and a parse() method which will convert back and forward between a Java object and XML in a fairly simple way (through Dom4j). 
+The classes typically have a toXml() and a parse() method which will convert back and forward between a Java object and XML in a fairly simple way (through Dom4j). 
 
 PriceTest has some samples for testing XML (de)serialization.
 
@@ -86,7 +86,7 @@ The classes will have methods to convert objects to XML and to parse XML structu
   * The sort logic will be similar to the sorting done in PriceList (already implemented) with one exception - a detail without priceRange (getPriceRange() == null) should always be the last element of a sorted list.
   
 * Implement CalculationModelDetail#calculate completely
-  * The TODOs are described inside the method body itself) and add the necessary test methods.
+  * The TODOs are described inside the method body itself and add the necessary test methods.
   
 * Implement CalculationModel class completely, most importantly the #calculate method. 
   * Create JUnit Testcase with necessary test methods
@@ -102,7 +102,7 @@ This defines whether percentage is applied first or absolute markup, e.g.
 
 Please create a (feature) branch based on the master branch and commit/push into this feature branch.
 
-Final work then is merged via a pull request into the master.
+Final work then is merged via a merge request into the dev.
 
 Please also make sure that the diffs are clean (regarding line feeds etc.). 
  
