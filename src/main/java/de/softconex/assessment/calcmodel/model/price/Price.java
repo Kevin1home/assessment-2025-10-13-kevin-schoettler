@@ -94,7 +94,7 @@ public final class Price {
      */
     public Price multiplyBigDecimal(BigDecimal bigDecimal) {
         if (bigDecimal == null) {
-            throw new IllegalArgumentException("Tried to add null to price object");
+            throw new IllegalArgumentException("Tried to multiply price by null");
         }
         return new Price(this.amount.multiply(bigDecimal));
     }
